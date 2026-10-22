@@ -1,181 +1,97 @@
-validators
-==========
+validators - Python Data Validation for Humans™
+===============================================
 
-Python Data Validation for Humans™.
+.. only:: html
 
+   |PyCQA| |SAST| |Docs| |Version| |Downloads|
 
-Why?
-====
+.. raw:: html
 
-Python has all kinds of validation tools, but every one of them requires
-defining a schema. I wanted to create a simple validation library where
-validating a simple value does not require defining a form or a schema.
-Apparently `some other guys have felt the same way`_.
+   <!-- [![Package][package-badge]][package-link] -->
 
-.. _some other guys have felt the same way:
-   http://opensourcehacker.com/2011/07/07/generic-python-validation-frameworks/
+Python has all kinds of data validation tools, but every one of them
+seems to require defining a schema or form. I wanted to create a simple
+validation library where validating a simple value does not require
+defining a form or a schema.
 
-Often I've had for example a case where I just wanted to check if given string
-is an email. With ``validators`` this use case becomes as easy as::
+.. code:: shell
 
-    >>> import validators
+   pip install validators
 
-    >>> validators.email('someone@example.com')
-    True
+Then,
 
+.. code:: python
 
-Installation
-============
+   >>> import validators
+   >>>
+   >>> validators.email('someone@example.com')
+   True
 
-You can install ``validators`` using pip::
-
-    pip install validators
-
-
-Currently ``validators`` supports python versions 2.7, 3.3, 3.4, 3.5 and PyPy.
-
-
-Basic validators
-================
-
-Each validator in ``validators`` is a simple function that takes the value to
-validate and possibly some additional key-value arguments. Each function returns
-``True`` when validation succeeds and
-:class:`~validators.utils.ValidationFailure` object when validation fails.
-
-:class:`~validators.utils.ValidationFailure` class implements ``__bool__``
-method so you can easily check if validation failed::
-
-    >>> if not validators.email('some_bogus_email@@@'):
-    ...     # Do something here
-    ...     pass
-
-:class:`~validators.utils.ValidationFailure` object also holds all the arguments
-passed to original function::
-
-    >>> result = validators.between(3, min=5)
-    >>> result.value
-    3
-    >>> result.min
-    5
-
-
-between
--------
-
-.. module:: validators.between
-
-.. autofunction:: between
-
-
-domain
-------
-
-.. module:: validators.domain
-
-.. autofunction:: domain
-
-
-email
------
-
-.. module:: validators.email
-
-.. autofunction:: email
-
-
-iban
-----
-
-.. module:: validators.iban
-
-.. autofunction:: iban
-
-ipv4
-----
-
-.. module:: validators.ip_address
-
-.. autofunction:: ipv4
-
-ipv6
-----
-
-.. autofunction:: ipv6
-
-
-length
-------
-
-.. module:: validators.length
-
-.. autofunction:: length
-
-
-mac_address
------------
-
-.. module:: validators.mac_address
-
-.. autofunction:: mac_address
-
-
-slug
-----
-
-.. module:: validators.slug
-
-.. autofunction:: slug
-
-
-truthy
-------
-
-.. module:: validators.truthy
-
-.. autofunction:: truthy
-
-url
----
-
-.. module:: validators.url
-
-.. autofunction:: url
-
-uuid
-----
-
-.. module:: validators.uuid
-
-.. autofunction:: uuid
-
-
-i18n validators
-===============
-
-Finnish
--------
-
-.. module:: validators.i18n.fi
-
-fi_business_id
-^^^^^^^^^^^^^^
-
-.. autofunction:: fi_business_id
-
-fi_ssn
-^^^^^^
-
-.. autofunction:: fi_ssn
-
-
-Internals
-=========
-
-validator
+Resources
 ---------
 
-.. module:: validators.utils
+.. raw:: html
 
-.. autoclass:: ValidationFailure
-.. autofunction:: validator
+   <!-- Backup documentation URL :  https://nandgator.github.io/pyvalidators/ -->
+
+.. raw:: html
+
+   <!-- Original documentation URL :  https://python-validators.github.io/validators/ -->
+
+- `Documentation <https://nandgator.github.io/pyvalidators>`__
+- `Bugtracker <https://github.com/python-validators/validators/issues>`__
+- `Security <https://github.com/python-validators/validators/blob/master/SECURITY.md>`__
+- `Code <https://github.com/python-validators/validators/>`__
+
+..
+
+   The documentation is published through GitHub Pages on the
+   maintainer’s `fork <https://github.com/nandgator/pyvalidators>`__,
+   because the maintainer has only contributor access to this repository
+   and cannot enable Pages for it.
+
+.. raw:: html
+
+   <!-- Original docs URL will be restored, once properly versioned docs are ready. -->
+
+--------------
+
+   **Python 3.11** `reaches EOL in <https://endoflife.date/python>`__
+   **October 2027.**
+
+.. raw:: html
+
+   <!-- Links -->
+
+.. raw:: html
+
+   <!-- [package-badge]: https://github.com/python-validators/validators/actions/workflows/package.yaml/badge.svg
+   [package-link]: https://github.com/python-validators/validators/actions/workflows/package.yaml -->
+
+.. |PyCQA| image:: https://github.com/python-validators/validators/actions/workflows/pycqa.yaml/badge.svg
+   :target: https://github.com/python-validators/validators/actions/workflows/pycqa.yaml
+.. |SAST| image:: https://github.com/python-validators/validators/actions/workflows/sast.yaml/badge.svg
+   :target: https://github.com/python-validators/validators/actions/workflows/sast.yaml
+.. |Docs| image:: https://github.com/nandgator/pyvalidators/actions/workflows/pages/pages-build-deployment/badge.svg
+   :target: https://github.com/nandgator/pyvalidators/actions/workflows/pages/pages-build-deployment
+.. |Version| image:: https://img.shields.io/pypi/v/validators?logo=pypi&logoColor=white&label=version&color=blue
+   :target: https://pypi.python.org/pypi/validators/
+.. |Downloads| image:: https://img.shields.io/pypi/dm/validators?logo=pypi&logoColor=white&color=blue
+   :target: https://pypi.python.org/pypi/validators/
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+   :caption: Quick Start:
+   :glob:
+
+   install_and_use
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+   :caption: API Reference:
+   :glob:
+
+   api/*

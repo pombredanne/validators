@@ -1,37 +1,25 @@
-# -*- coding: utf-8 -*-
+"""Test Length."""
+
+# external
 import pytest
 
-import validators
+# local
+from validators import ValidationError, length
 
 
-@pytest.mark.parametrize(('value', 'min', 'max'), [
-    ('password', 2, 10),
-    ('password', None, 10),
-    ('password', 2, None),
-    ('password', 8, 8)
-])
-def test_returns_true_on_valid_length(value, min, max):
-    assert validators.length(value, min=min, max=max)
+@pytest.mark.parametrize(
+    ("value", "min_val", "max_val"),
+    [("password", 2, None), ("password", None, None), ("password", 0, 10), ("password", 8, 8)],
+)
+def test_returns_true_on_valid_length(value: str, min_val: int, max_val: int):
+    """Test returns true on valid length."""
+    assert length(value, min_val=min_val, max_val=max_val)
 
 
-@pytest.mark.parametrize(('value', 'min', 'max'), [
-    ('something', 13, 12),
-    ('something', -1, None),
-    ('something', -1, None),
-    ('something', -3, -2)
-])
-def test_raises_assertion_error_for_invalid_args(value, min, max):
-    with pytest.raises(AssertionError):
-        assert validators.length(value, min=min, max=max)
-
-
-@pytest.mark.parametrize(('value', 'min', 'max'), [
-    ('something', 13, 14),
-    ('something', None, 6),
-    ('something', 13, None)
-])
-def test_returns_failed_validation_on_invalid_range(value, min, max):
-    assert isinstance(
-        validators.length(value, min=min, max=max),
-        validators.ValidationFailure
-    )
+@pytest.mark.parametrize(
+    ("value", "min_val", "max_val"),
+    [("something", 14, 12), ("something", -10, -20), ("something", 0, -2), ("something", 13, 14)],
+)
+def test_returns_failed_validation_on_invalid_range(value: str, min_val: int, max_val: int):
+    """Test returns failed validation on invalid range."""
+    assert isinstance(length(value, min_val=min_val, max_val=max_val), ValidationError)
